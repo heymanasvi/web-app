@@ -283,13 +283,17 @@ export class LoansViewComponent implements OnInit {
         });
       }
 
-      if (this.loanDetailsData.canDisburse || this.loanDetailsData.multiDisburseLoan) {
+      if (
+        this.loanDetailsData.multiDisburseLoan &&
+        this.loanDetailsData.summary?.totalUndisbursedAmount > 0
+      ) {
         this.buttonConfig.addButton({
-          name: 'Disburse',
-          icon: 'hand-holding-usd',
-          taskPermissionName: 'DISBURSE_LOAN'
-        });
+         name: 'Disburse',
+         icon: 'hand-holding-usd',
+         taskPermissionName: 'DISBURSE_LOAN'
+       });
       }
+
       if (this.loanDetailsData.canDisburse) {
         this.buttonConfig.addButton({
           name: 'Disburse to Savings',
